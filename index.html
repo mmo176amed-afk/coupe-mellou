@@ -62,6 +62,20 @@
   .badge i{color:var(--gold-light);}
 
   .wrap{max-width:760px;margin:0 auto;padding:26px 16px 0;}
+
+  /* ===== قسم تعريفي مختصر وجذاب ===== */
+  .intro-card{
+    background:linear-gradient(135deg,#0f1e3d 0%,#173463 100%);
+    color:#fff;border-radius:14px;padding:24px 22px;margin-bottom:22px;
+    box-shadow:0 6px 20px rgba(15,30,61,0.25);
+  }
+  .intro-card h2{font-size:1.2rem;color:#e7c877;margin-bottom:12px;}
+  .intro-card p{font-size:0.92rem;color:#e3e8f5;margin-bottom:14px;line-height:1.7;}
+  .intro-card p strong{color:#e7c877;}
+  .intro-features{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;}
+  .intro-features li{display:flex;align-items:center;gap:9px;font-size:0.87rem;background:rgba(255,255,255,0.06);padding:9px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);}
+  .intro-features li i{color:#e7c877;font-size:0.95rem;}
+
   .notice{
     background:#fffaf0;border:1px solid var(--gold-light);
     color:#7a5a10;padding:14px 16px;border-radius:10px;
@@ -97,6 +111,7 @@
     width:100%;
   }
   input:focus,select:focus,textarea:focus{border-color:var(--navy-light);background:#fff;}
+  input:disabled,select:disabled,textarea:disabled{background:#f1f0ea;color:#7a7f8c;cursor:not-allowed;}
   textarea{resize:vertical;min-height:70px;}
 
   .choice-row{display:flex;flex-wrap:wrap;gap:10px;}
@@ -112,11 +127,19 @@
   .comp-row{
     display:flex;align-items:center;justify-content:space-between;gap:10px;
     border-bottom:1px dashed var(--border);padding:10px 2px;font-size:0.9rem;
+    flex-wrap:wrap;
   }
   .comp-row:last-child{border-bottom:none;}
   .comp-row label{display:flex;align-items:center;gap:9px;font-weight:600;color:var(--ink);cursor:pointer;}
   .comp-row input{width:17px;height:17px;cursor:pointer;}
   .comp-price{color:var(--gold);font-weight:700;font-size:0.85rem;white-space:nowrap;}
+
+  .soroban-select{
+    padding:7px 10px;border-radius:8px;border:1.5px solid var(--border);
+    font-size:0.82rem;font-family:'Cairo',sans-serif;background:#fff;
+    color:var(--ink);cursor:pointer;min-width:200px;flex:1 1 200px;
+  }
+  .soroban-select:focus{border-color:var(--navy-light);outline:none;}
 
   .pkg-option{
     display:flex;align-items:flex-start;gap:10px;
@@ -155,6 +178,21 @@
   .msg-success{background:#eefaf3;border:1px solid #a8dcc2;color:var(--success);}
   .msg-error{background:#fdeeed;border:1px solid #f0b8b3;color:var(--danger);}
 
+  /* ===== البحث / التعديل ===== */
+  .search-status{
+    padding:12px 14px;border-radius:10px;font-size:0.88rem;font-weight:600;
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  }
+  .search-status.found{background:#eefaf3;border:1px solid #a8dcc2;color:var(--success);}
+  .search-status.notfound{background:#fffaf0;border:1px solid var(--gold-light);color:#7a5a10;}
+  .search-status.loading{background:#f0f4fb;border:1px solid #c7d2fe;color:#3730a3;}
+  .btn-edit{
+    background:var(--navy);color:#fff;border:none;padding:8px 16px;
+    border-radius:8px;font-size:0.83rem;font-weight:700;cursor:pointer;
+    font-family:'Cairo',sans-serif;display:inline-flex;align-items:center;gap:6px;
+  }
+  .btn-edit:hover{background:var(--navy-light);}
+
   .zed-banner{
     margin-top:6px;background:linear-gradient(135deg,#eef2ff 0%,#e0e7ff 100%);
     border:1.5px solid #c7d2fe;border-radius:12px;padding:15px 18px;
@@ -189,7 +227,7 @@
 </style>
 </head>
 <body>
-
+  
 <header class="hero">
   <div class="logo-slot">
     <i class="fa-solid fa-trophy"></i>
@@ -207,6 +245,22 @@
 
 <div class="wrap">
 
+  <!-- ===== قسم تعريفي مختصر وجذاب ===== -->
+  <div class="intro-card">
+    <h2><i class="fa-solid fa-trophy" style="color:var(--gold-light);"></i> لماذا تشارك في كأس ملبو للذكاء الشامل؟</h2>
+    <p>
+      بطولة وطنية فريدة تجمع بين <strong>الحساب الذهني</strong>، <strong>الرياضيات السريعة</strong>،
+      <strong>ألعاب الذكاء</strong>، <strong>الذاكرة التنافسية</strong>، <strong>الروبوتيك</strong>
+      و<strong>اللغات</strong> — في حدث واحد يجمع الأطفال والشباب إلى غاية 18 سنة، على مدى يومين كاملين.
+    </p>
+    <ul class="intro-features">
+      <li><i class="fa-solid fa-medal"></i> جوائز قيمة وشهادات مشاركة للجميع</li>
+      <li><i class="fa-solid fa-users"></i> بيئة تنافسية شريفة وتحت إشراف مدربين معتمدين</li>
+      <li><i class="fa-solid fa-location-dot"></i> مكتبة ملبو – بجاية | 02 و03 أكتوبر 2026</li>
+      <li><i class="fa-solid fa-calculator"></i> باقات مرنة تناسب جميع المستويات والميزانيات</li>
+    </ul>
+  </div>
+
   <div class="notice">
     <i class="fa-solid fa-circle-info"></i>
     <span>يرجى قراءة تفاصيل البطولة والباقات والأسعار في الإعلان الرسمي قبل ملء الاستمارة. سيتم التواصل معكم بعد دراسة الطلب لتأكيد التسجيل وبيانات الدفع.</span>
@@ -222,15 +276,18 @@
       <div class="grid">
         <div class="field">
           <label>لقب المشارك <span class="req">*</span></label>
-          <input type="text" id="lastName" placeholder="لقب المشارك..." required>
+          <input type="text" id="lastName" placeholder="لقب المشارك..." required onblur="trySearchParticipant()">
         </div>
         <div class="field">
           <label>اسم المشارك <span class="req">*</span></label>
-          <input type="text" id="firstName" placeholder="اسم المشارك..." required>
+          <input type="text" id="firstName" placeholder="اسم المشارك..." required onblur="trySearchParticipant()">
         </div>
         <div class="field full">
           <label>تاريخ الميلاد <span class="req">*</span></label>
           <input type="text" id="birth" placeholder="JJ/MM/AAAA" maxlength="10" required oninput="formatBirthDate(this)" onblur="autoCompleteDate(this)">
+        </div>
+        <div class="field full" id="searchStatusField" style="display:none;">
+          <div id="searchStatus" class="search-status"></div>
         </div>
       </div>
     </div>
@@ -248,6 +305,10 @@
         <div class="field">
           <label>رقم الهاتف / واتساب <span class="req">*</span></label>
           <input type="tel" id="phone" placeholder="0555 XX XX XX" required>
+        </div>
+        <div class="field full">
+          <label>البريد الإلكتروني للولي <span class="opt">(لتلقي تأكيد التسجيل — اختياري)</span></label>
+          <input type="email" id="email" placeholder="example@email.com">
         </div>
         <div class="field full">
           <label>الولاية <span class="req">*</span></label>
@@ -339,7 +400,19 @@
 
       <div class="day-block">
         <div class="day-title"><i class="fa-solid fa-1"></i> اليوم الأول — 02 أكتوبر</div>
-        <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_mental" data-key="mental"> الحساب الذهني</label><span class="comp-price">2500 دج</span></div>
+        <div class="comp-row">
+          <label><input type="checkbox" class="comp-cb" id="cb_mental" data-key="mental"> الحساب الذهني</label>
+          <span class="comp-price">2500 دج</span>
+          <select id="sorobanLevel" class="soroban-select" onchange="onSorobanChange()">
+            <option value="">-- مستوى السوروبان --</option>
+            <option value="0">تحضيري</option>
+            <option value="1">المستوى الأول (الجمع والطرح البسيط)</option>
+            <option value="2">المستوى الثاني (الأصدقاء 5)</option>
+            <option value="3">المستوى الثالث (الأصدقاء 10)</option>
+            <option value="4">المستوى الرابع (الضرب)</option>
+            <option value="5">المستوى الخامس (القسمة)</option>
+          </select>
+        </div>
         <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_fastmath" data-key="fastmath"> الرياضيات السريعة</label><span class="comp-price">2500 دج</span></div>
         <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_smart" data-key="smart"> ألعاب الذكاء</label><span class="comp-price">1000 دج</span></div>
         <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_flash" data-key="flash"> Flash Anzan</label><span class="comp-price">1000 دج</span></div>
@@ -493,8 +566,14 @@
 </div>
 
 <script>
+  /* ============================================================
+     رابط الـ Web App الخاص بـ Google Apps Script
+     ============================================================ */
   const SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzuJdntv-4mfaH7UtGychpxDpQT-CwZJUjHVR-68PDKLlidC1yCzyZOsaan8Cx63OtT/exec";
 
+  /* ============================================================
+     قائمة المسابقات وأسعارها
+     ============================================================ */
   const COMPETITIONS = {
     mental:{label:"الحساب الذهني",price:2500},
     fastmath:{label:"الرياضيات السريعة",price:2500},
@@ -505,6 +584,16 @@
     languages:{label:"مسابقة اللغات",price:2500}
   };
 
+  /* ============================================================
+     متغيرات حالة البحث/التعديل
+     ============================================================ */
+  let currentEditingRow = -1;
+  let originalBirthDate = "";
+  let lastSearchedKey = "";
+
+  /* ============================================================
+     دوال الإظهار/الإخفاء
+     ============================================================ */
   function toggleCenter(show){
     document.getElementById('centerField').style.display = show ? 'flex' : 'none';
     document.getElementById('coachField').style.display = show ? 'flex' : 'none';
@@ -514,6 +603,9 @@
     document.getElementById('paymentOtherField').classList.toggle('hidden', !show);
   }
 
+  /* ============================================================
+     تنسيق تاريخ الميلاد
+     ============================================================ */
   function formatBirthDate(input){
     let val = input.value.replace(/[^\d\/]/g,'');
     if(!val.includes('/')){
@@ -560,6 +652,9 @@
     return age;
   }
 
+  /* ============================================================
+     اختيار المسابقات والباقات
+     ============================================================ */
   function getSelectedKeys(){
     return Array.from(document.querySelectorAll('.comp-cb'))
       .filter(cb=>cb.checked).map(cb=>cb.dataset.key).sort();
@@ -608,6 +703,179 @@
     document.getElementById('totalLabel').textContent = label;
   }
 
+  /* ============================================================
+     مستوى السوروبان
+     ============================================================ */
+  function onSorobanChange(){
+    const lvl = document.getElementById('sorobanLevel').value;
+    const cbMental = document.getElementById('cb_mental');
+    // إذا تم اختيار مستوى السوروبان، نفعّل تلقائياً "الحساب الذهني"
+    if(lvl !== "" && !cbMental.checked){
+      cbMental.checked = true;
+      updatePackages();
+    }
+  }
+
+  /* ============================================================
+     البحث التلقائي عن المشارك
+     ============================================================ */
+  function trySearchParticipant(){
+    const lastName = document.getElementById('lastName').value.trim();
+    const firstName = document.getElementById('firstName').value.trim();
+    const statusField = document.getElementById('searchStatusField');
+    const statusBox = document.getElementById('searchStatus');
+
+    if (!lastName || !firstName) return;
+
+    const key = (lastName + '|' + firstName).toLowerCase();
+    if (key === lastSearchedKey) return; // تجنّب البحث المتكرر
+    lastSearchedKey = key;
+
+    statusField.style.display = 'block';
+    statusBox.className = 'search-status loading';
+    statusBox.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري البحث...';
+
+    fetchSearchWithJSONP(lastName, firstName, statusField, statusBox);
+  }
+
+  function fetchSearchWithJSONP(lastName, firstName, statusField, statusBox){
+    const cbName = 'cb_search_' + Date.now();
+    let completed = false;
+
+    window[cbName] = function(res){
+      completed = true;
+      delete window[cbName];
+      if (!res || !res.success){
+        showNotFound(statusBox);
+        return;
+      }
+      if (!res.found){
+        showNotFound(statusBox);
+        return;
+      }
+      // تم العثور على المشارك
+      currentEditingRow = res.rowIndex;
+      fillFormWithData(res.data);
+      statusBox.className = 'search-status found';
+      statusBox.innerHTML = `
+        <i class="fa-solid fa-circle-check"></i>
+        <span>تم العثور على تسجيل سابق باسم <strong>${res.data.lastName} ${res.data.firstName}</strong>. اضغط على "تعديل" لتحديث بياناتك.</span>
+        <button type="button" class="btn-edit" onclick="enableEditMode()">
+          <i class="fa-solid fa-pen"></i> تعديل البيانات
+        </button>
+      `;
+      lockForm(true);
+    };
+
+    const script = document.createElement('script');
+    script.src = SCRIPT_WEB_APP_URL + '?callback=' + cbName +
+      '&action=search' +
+      '&lastName=' + encodeURIComponent(lastName) +
+      '&firstName=' + encodeURIComponent(firstName);
+    document.body.appendChild(script);
+
+    setTimeout(()=>{
+      if (!completed && window[cbName]) {
+        delete window[cbName];
+        showNotFound(statusBox);
+      }
+    }, 10000);
+  }
+
+  function showNotFound(statusBox){
+    statusBox.className = 'search-status notfound';
+    statusBox.innerHTML = '<i class="fa-solid fa-circle-info"></i> لم يتم العثور على تسجيل سابق. يمكنك المتابعة كتسجيل جديد.';
+    currentEditingRow = -1;
+    originalBirthDate = "";
+    lastSearchedKey = "";
+  }
+
+  function fillFormWithData(d){
+    document.getElementById('birth').value = d.birth || '';
+    document.getElementById('parentName').value = d.parentName || '';
+    document.getElementById('phone').value = d.phone || '';
+    document.getElementById('email').value = d.email || '';
+
+    // الولاية
+    if (d.wilaya) {
+      const sel = document.getElementById('wilaya');
+      for (let opt of sel.options){
+        if (opt.value.endsWith(d.wilaya) || opt.value === d.wilaya) {
+          sel.value = opt.value; break;
+        }
+      }
+    }
+
+    // المركز / المدرب
+    if (d.hasCenter === 'نعم'){
+      document.querySelector('input[name="hasCenter"][value="نعم"]').checked = true;
+      toggleCenter(true);
+      document.getElementById('center').value = d.center || '';
+      document.getElementById('coach').value = d.coach || '';
+    } else {
+      document.querySelector('input[name="hasCenter"][value="لا"]').checked = true;
+      toggleCenter(false);
+    }
+
+    // مستوى السوروبان
+    if (d.sorobanLevel !== undefined && d.sorobanLevel !== null && d.sorobanLevel !== ''){
+      document.getElementById('sorobanLevel').value = d.sorobanLevel;
+    }
+
+    // المسابقات
+    const day1 = (d.competitionsDay1 || '').split('، ').filter(x=>x.trim());
+    const day2 = (d.competitionsDay2 || '').split('، ').filter(x=>x.trim());
+    document.querySelectorAll('.comp-cb').forEach(cb=>{
+      const label = COMPETITIONS[cb.dataset.key].label;
+      cb.checked = day1.includes(label) || day2.includes(label);
+    });
+
+    // طريقة الدفع
+    const pay = (d.payment || '').toString();
+    if (pay.startsWith('أخرى')){
+      document.querySelector('input[name="payment"][value="أخرى"]').checked = true;
+      togglePaymentOther(true);
+      document.getElementById('paymentOther').value = pay.replace('أخرى: ','').trim();
+    } else {
+      const payRadio = document.querySelector(`input[name="payment"][value="${pay}"]`);
+      if (payRadio) {
+        payRadio.checked = true;
+        togglePaymentOther(false);
+      }
+    }
+
+    document.getElementById('notes').value = d.notes || '';
+    originalBirthDate = d.birth || '';
+    updatePackages();
+  }
+
+  function lockForm(locked){
+    const ids = ['birth','parentName','phone','email','wilaya','center','coach','sorobanLevel','notes','paymentOther'];
+    ids.forEach(id=>{
+      const el = document.getElementById(id);
+      if (el) el.disabled = locked;
+    });
+    document.querySelectorAll('.comp-cb, input[name="hasCenter"], input[name="payment"], input[name="pkg"]').forEach(el=>{
+      el.disabled = locked;
+    });
+  }
+
+  function enableEditMode(){
+    lockForm(false);
+    // قفل تاريخ الميلاد إذا كان صحيحاً وكاملاً
+    const birthEl = document.getElementById('birth');
+    if (isValidDatePattern(originalBirthDate)){
+      birthEl.disabled = true;
+      birthEl.title = 'لا يمكن تعديل تاريخ الميلاد بعد التسجيل';
+    }
+    const statusBox = document.getElementById('searchStatus');
+    statusBox.className = 'search-status found';
+    statusBox.innerHTML = '<i class="fa-solid fa-pen"></i> وضع التعديل مُفعّل. عدّل ما تريد ثم اضغط "إرسال طلب التسجيل".';
+  }
+
+  /* ============================================================
+     إرسال البيانات
+     ============================================================ */
   function submitData(e){
     e.preventDefault();
     const errBox = document.getElementById('errorMsg');
@@ -616,7 +884,9 @@
 
     const birthInput = document.getElementById('birth');
     autoCompleteDate(birthInput);
-    if(!isValidDatePattern(birthInput.value)){
+
+    // إذا كان تاريخ الميلاد مقفلاً (وضع التعديل)، تخطَّ التحقق
+    if (!birthInput.disabled && !isValidDatePattern(birthInput.value)){
       errBox.innerText = '⚠️ يرجى إدخال تاريخ الميلاد بصيغة صحيحة JJ/MM/AAAA';
       errBox.style.display='block';
       birthInput.focus();
@@ -628,6 +898,17 @@
       errBox.innerText = '⚠️ يرجى اختيار مسابقة واحدة على الأقل';
       errBox.style.display='block';
       return;
+    }
+
+    // التحقق من مستوى السوروبان إذا تم اختيار الحساب الذهني
+    if (selected.includes('mental')){
+      const lvl = document.getElementById('sorobanLevel').value;
+      if (lvl === ''){
+        errBox.innerText = '⚠️ يرجى اختيار مستوى السوروبان لمسابقة الحساب الذهني';
+        errBox.style.display='block';
+        document.getElementById('sorobanLevel').focus();
+        return;
+      }
     }
 
     if(!document.getElementById('consent').checked){
@@ -651,6 +932,7 @@
     const paymentOther = document.getElementById('paymentOther').value.trim();
 
     const payload = {
+      action: currentEditingRow > 0 ? 'update' : 'register',
       compTitle: "كأس ملبو للذكاء الشامل",
       compDate: "02-03/10/2026",
       lastName: document.getElementById('lastName').value.trim(),
@@ -659,10 +941,12 @@
       age: computeAge(birthInput.value.trim()),
       parentName: document.getElementById('parentName').value.trim(),
       phone: document.getElementById('phone').value.trim(),
+      email: document.getElementById('email').value.trim(),
       wilaya: document.getElementById('wilaya').value,
       hasCenter: hasCenter,
       center: hasCenter==='نعم' ? document.getElementById('center').value.trim() : '',
       coach: hasCenter==='نعم' ? document.getElementById('coach').value.trim() : '',
+      sorobanLevel: document.getElementById('sorobanLevel').value || '',
       competitionsDay1: selected.filter(k=>['mental','fastmath','smart','flash'].includes(k)).map(k=>COMPETITIONS[k].label).join('، '),
       competitionsDay2: selected.filter(k=>['memory','robotics','languages'].includes(k)).map(k=>COMPETITIONS[k].label).join('، '),
       package: pkgLabel,
@@ -678,12 +962,18 @@
     }).then(()=>{
       btn.disabled=false;
       btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> إرسال طلب التسجيل';
-      succBox.innerHTML = '✅ تم استلام طلب تسجيل <strong>'+payload.lastName+' '+payload.firstName+'</strong> بنجاح، وسيتم التواصل معكم لتأكيد الدفع.';
+      const actionText = currentEditingRow > 0 ? 'تحديث' : 'تسجيل';
+      succBox.innerHTML = '✅ تم استلام طلب ' + actionText + ' <strong>'+payload.lastName+' '+payload.firstName+'</strong> بنجاح، وسيتم التواصل معكم لتأكيد الدفع.';
       succBox.style.display='block';
       document.getElementById('regForm').reset();
       toggleCenter(false);
       togglePaymentOther(false);
       updatePackages();
+      // إعادة تعيين حالة البحث
+      currentEditingRow = -1;
+      originalBirthDate = "";
+      lastSearchedKey = "";
+      document.getElementById('searchStatusField').style.display = 'none';
       window.scrollTo({top:0,behavior:'smooth'});
     }).catch(err=>{
       btn.disabled=false;
@@ -692,6 +982,13 @@
       errBox.style.display='block';
     });
   }
+
+  /* ============================================================
+     تهيئة أولية
+     ============================================================ */
+  document.addEventListener('DOMContentLoaded', function(){
+    updatePackages();
+  });
 </script>
 </body>
 </html>
