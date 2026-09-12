@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كأس ملبو للذكاء الشامل — استمارة التسجيل الرسمية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --navy:#0f1e3d;
+    --navy-light:#173463;
+    --gold:#c8992e;
+    --gold-light:#e7c877;
+    --cream:#f8f6f0;
+    --ink:#1c2434;
+    --muted:#657089;
+    --border:#e2e0d6;
+    --success:#136c4a;
+    --danger:#a4291f;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Cairo',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    padding-bottom:60px;
+  }
+  h1,h2,h3,.display{font-family:'El Messiri',serif;}
+
+  /* ===== Header ===== */
+  .hero{
+    background:radial-gradient(1200px 500px at 20% -10%, var(--navy-light), var(--navy) 60%);
+    color:#fff;
+    padding:46px 20px 54px;
+    text-align:center;
+    position:relative;
+  }
+  .logo-slot{
+    width:104px;height:104px;border-radius:50%;
+    margin:0 auto 18px;
+    border:2px dashed rgba(255,255,255,0.45);
+    display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:4px;
+    color:rgba(255,255,255,0.75);
+    font-size:0.68rem;
+    background:rgba(255,255,255,0.05);
+  }
+  .logo-slot i{font-size:1.4rem;color:var(--gold-light);}
+  .hero h1{font-size:1.7rem;font-weight:700;margin-bottom:6px;}
+  .hero .gold-rule{width:64px;height:3px;background:var(--gold);margin:12px auto 14px;border-radius:2px;}
+  .hero p.sub{color:#cfd8ec;font-size:0.95rem;max-width:520px;margin:0 auto 18px;}
+  .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  .badge{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.18);
+    color:#f1f3fb;padding:8px 14px;border-radius:999px;
+    font-size:0.82rem;font-weight:600;display:flex;align-items:center;gap:7px;
+  }
+  .badge i{color:var(--gold-light);}
+
+  /* ===== Layout ===== */
+  .wrap{max-width:760px;margin:-26px auto 0;padding:0 16px;}
+  .notice{
+    background:#fffaf0;border:1px solid var(--gold-light);
+    color:#7a5a10;padding:14px 16px;border-radius:10px;
+    font-size:0.87rem;margin-bottom:22px;display:flex;gap:10px;align-items:flex-start;
+  }
+  .notice i{margin-top:2px;color:var(--gold);}
+
+  .step{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px 22px 24px;
+    margin-bottom:18px;
+  }
+  .step-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .step-num{
+    flex:none;width:34px;height:34px;border-radius:50%;
+    background:var(--navy);color:var(--gold-light);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-family:'El Messiri',serif;font-size:0.95rem;
+  }
+  .step-head h2{font-size:1.12rem;color:var(--navy);font-weight:700;}
+  .step-head span.hint{display:block;font-size:0.78rem;color:var(--muted);font-weight:400;margin-top:2px;font-family:'Cairo',sans-serif;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:0.86rem;font-weight:700;color:#3c4356;}
+  label .req{color:var(--danger);}
+  label .opt{font-weight:400;color:var(--muted);font-size:0.78rem;}
+  input[type=text],input[type=tel],input[type=email],select,textarea{
+    padding:11px 13px;border-radius:9px;border:1.5px solid var(--border);
+    font-size:0.94rem;font-family:'Cairo',sans-serif;background:#fbfaf7;outline:none;color:var(--ink);
+  }
+  input:focus,select:focus,textarea:focus{border-color:var(--navy-light);background:#fff;}
+  textarea{resize:vertical;min-height:70px;}
+
+  .choice-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .choice{
+    display:flex;align-items:center;gap:8px;background:#fbfaf7;
+    border:1.5px solid var(--border);border-radius:9px;padding:9px 14px;
+    font-size:0.88rem;font-weight:600;cursor:pointer;
+  }
+  .choice input{width:16px;height:16px;cursor:pointer;}
+  .choice.checked{border-color:var(--navy-light);background:#eef2f9;}
+
+  .day-block{border:1px solid var(--border);border-radius:11px;padding:14px 14px 6px;background:#fcfbf8;margin-bottom:14px;}
+  .day-title{font-weight:700;color:var(--navy);font-size:0.92rem;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+  .comp-row{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    border-bottom:1px dashed var(--border);padding:10px 2px;font-size:0.9rem;
+  }
+  .comp-row:last-child{border-bottom:none;}
+  .comp-row label{display:flex;align-items:center;gap:9px;font-weight:600;color:var(--ink);cursor:pointer;}
+  .comp-row input{width:17px;height:17px;cursor:pointer;}
+  .comp-price{color:var(--gold);font-weight:700;font-size:0.85rem;white-space:nowrap;}
+
+  .pkg-option{
+    display:flex;align-items:flex-start;gap:10px;
+    border:1.5px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:9px;
+    font-size:0.87rem;transition:opacity .15s;
+  }
+  .pkg-option input{margin-top:3px;width:16px;height:16px;flex:none;}
+  .pkg-option .pkg-name{font-weight:700;color:var(--ink);}
+  .pkg-option .pkg-price{color:var(--gold);font-weight:700;}
+  .pkg-option.pkg-disabled{opacity:0.4;background:#f4f3ef;}
+  .pkg-option:not(.pkg-disabled){border-color:var(--navy-light);background:#f7f9fd;cursor:pointer;}
+  label.pkg-label{display:flex;flex-direction:column;gap:3px;cursor:pointer;}
+
+  .total-box{
+    background:var(--navy);color:#fff;border-radius:12px;
+    padding:16px 18px;display:flex;justify-content:space-between;align-items:center;
+    margin-top:14px;flex-wrap:wrap;gap:8px;
+  }
+  .total-box .t-label{font-size:0.84rem;color:#cfd8ec;}
+  .total-box .t-value{font-family:'El Messiri',serif;font-size:1.5rem;color:var(--gold-light);font-weight:700;}
+
+  .hidden{display:none !important;}
+
+  .consent-row{display:flex;align-items:flex-start;gap:10px;background:#f7f9fd;border:1px solid var(--border);border-radius:10px;padding:14px;font-size:0.87rem;}
+  .consent-row input{width:18px;height:18px;margin-top:2px;flex:none;cursor:pointer;}
+
+  .btn-submit{
+    width:100%;margin-top:20px;padding:15px;border:none;border-radius:11px;
+    background:var(--navy);color:#fff;font-size:1.02rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;font-family:'Cairo',sans-serif;
+  }
+  .btn-submit:hover{background:var(--navy-light);}
+  .btn-submit:disabled{background:#9aa3b5;cursor:not-allowed;}
+
+  .msg-box{display:none;text-align:center;padding:15px;border-radius:10px;margin-top:14px;font-weight:700;font-size:0.92rem;}
+  .msg-success{background:#eefaf3;border:1px solid #a8dcc2;color:var(--success);}
+  .msg-error{background:#fdeeed;border:1px solid #f0b8b3;color:var(--danger);}
+
+  .footer-note{text-align:center;color:var(--muted);font-size:0.82rem;margin-top:26px;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="logo-slot">
+    <i class="fa-solid fa-trophy"></i>
+    <span>مكان شعار<br>البطولة</span>
+  </div>
+  <h1>كأس ملبو للذكاء الشامل</h1>
+  <div class="gold-rule"></div>
+  <p class="sub">بطولة تجمع بين الحساب، الرياضيات، الذكاء، الذاكرة، الروبوتيك واللغات — للأطفال والشباب إلى غاية 18 سنة</p>
+  <div class="badges">
+    <span class="badge"><i class="fa-solid fa-calendar-days"></i> 02 و03 أكتوبر 2026</span>
+    <span class="badge"><i class="fa-solid fa-location-dot"></i> مكتبة ملبو – بجاية</span>
+    <span class="badge"><i class="fa-solid fa-star"></i> استمارة التسجيل الرسمية</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="notice">
+    <i class="fa-solid fa-circle-info"></i>
+    <span>يرجى قراءة تفاصيل البطولة والباقات والأسعار في الإعلان الرسمي قبل ملء الاستمارة. سيتم التواصل معكم بعد دراسة الطلب لتأكيد التسجيل وبيانات الدفع.</span>
+  </div>
+
+  <form id="regForm" onsubmit="submitData(event)">
+
+    <!-- 1. معلومات المشارك -->
+    <div class="step">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <h2>معلومات المشارك</h2>
+      </div>
+      <div class="grid">
+        <div class="field full">
+          <label>الاسم واللقب <span class="req">*</span></label>
+          <input type="text" id="fullName" placeholder="اسم ولقب المشارك..." required>
+        </div>
+        <div class="field">
+          <label>تاريخ الميلاد <span class="req">*</span></label>
+          <input type="text" id="birth" placeholder="JJ/MM/AAAA" maxlength="10" required oninput="formatBirthDate(this)" onblur="autoCompleteDate(this)">
+        </div>
+        <div class="field">
+          <label>العمر <span class="req">*</span></label>
+          <select id="age" required>
+            <option value="">-- اختر العمر --</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>الجنس <span class="req">*</span></label>
+          <div class="choice-row">
+            <label class="choice"><input type="radio" name="gender" value="ذكر" required> ذكر</label>
+            <label class="choice"><input type="radio" name="gender" value="أنثى"> أنثى</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. معلومات الولي -->
+    <div class="step">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <h2>معلومات الولي</h2>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label>اسم ولقب الولي <span class="req">*</span></label>
+          <input type="text" id="parentName" placeholder="اسم ولقب الولي..." required>
+        </div>
+        <div class="field">
+          <label>رقم الهاتف / واتساب <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="0555 XX XX XX" required>
+        </div>
+        <div class="field full">
+          <label>المدينة / الولاية <span class="req">*</span></label>
+          <input type="text" id="city" placeholder="مثال: بجاية" required>
+        </div>
+        <div class="field full">
+          <label>هل يشارك الطفل مع مركز أو مدرب؟ <span class="req">*</span></label>
+          <div class="choice-row">
+            <label class="choice"><input type="radio" name="hasCenter" value="نعم" onchange="toggleCenter(true)"> نعم</label>
+            <label class="choice"><input type="radio" name="hasCenter" value="لا" checked onchange="toggleCenter(false)"> لا</label>
+          </div>
+        </div>
+        <div class="field" id="centerField" style="display:none;">
+          <label>اسم المركز</label>
+          <input type="text" id="center" placeholder="اسم المركز...">
+        </div>
+        <div class="field" id="coachField" style="display:none;">
+          <label>اسم المدرب</label>
+          <input type="text" id="coach" placeholder="اسم المدرب...">
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. اختر مسابقاتك -->
+    <div class="step">
+      <div class="step-head">
+        <div class="step-num">3</div>
+        <h2>اختر مسابقاتك</h2>
+      </div>
+
+      <div class="day-block">
+        <div class="day-title"><i class="fa-solid fa-1"></i> اليوم الأول — 02 أكتوبر</div>
+        <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_mental" data-key="mental"> الحساب الذهني</label><span class="comp-price">2500 دج</span></div>
+        <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_fastmath" data-key="fastmath"> الرياضيات السريعة</label><span class="comp-price">2500 دج</span></div>
+        <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_smart" data-key="smart"> ألعاب الذكاء</label><span class="comp-price">1000 دج</span></div>
+        <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_flash" data-key="flash"> Flash Anzan</label><span class="comp-price">1000 دج</span></div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-title"><i class="fa-solid fa-2"></i> اليوم الثاني — 03 أكتوبر</div>
+        <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_memory" data-key="memory"> الذاكرة التنافسية</label><span class="comp-price">2500 دج</span></div>
+        <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_robotics" data-key="robotics"> الروبوتيك</label><span class="comp-price">2500 دج</span></div>
+        <div class="comp-row"><label><input type="checkbox" class="comp-cb" id="cb_languages" data-key="languages"> مسابقة اللغات (عربية + فرنسية + إنجليزية)</label><span class="comp-price">2500 دج</span></div>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);">مسابقة اللغات عبارة عن اختبار واحد شامل للغات الثلاث، وليست ثلاث مسابقات منفصلة.</p>
+    </div>
+
+    <!-- 4. الباقات -->
+    <div class="step">
+      <div class="step-head">
+        <div class="step-num">4</div>
+        <h2>هل ترغب في الاستفادة من إحدى الباقات؟</h2>
+        <span class="hint" style="margin-inline-start:auto;"></span>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:12px;">تظهر الباقات المتاحة تلقائياً حسب المسابقات التي اخترتها أعلاه.</p>
+
+      <label class="pkg-option" for="pkg_individual">
+        <input type="radio" name="pkg" id="pkg_individual" value="individual" checked>
+        <span class="pkg-label"><span class="pkg-name">تسجيل فردي حسب المسابقة</span><span style="color:var(--muted);">السعر = مجموع أسعار المسابقات المختارة</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="mental,smart" for="pkg1">
+        <input type="radio" name="pkg" id="pkg1" value="pkg_mental_smart" data-price="3000" data-label="باقة الحساب الذهني + ألعاب الذكاء" disabled>
+        <span class="pkg-label"><span class="pkg-name">باقة الحساب الذهني + ألعاب الذكاء</span><span class="pkg-price">3000 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="flash,mental,smart" for="pkg2">
+        <input type="radio" name="pkg" id="pkg2" value="pkg_mental_flash_smart" data-price="3500" data-label="باقة الحساب الذهني + Flash Anzan + ألعاب الذكاء" disabled>
+        <span class="pkg-label"><span class="pkg-name">باقة الحساب الذهني + Flash Anzan + ألعاب الذكاء</span><span class="pkg-price">3500 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="fastmath,smart" for="pkg3">
+        <input type="radio" name="pkg" id="pkg3" value="pkg_fastmath_smart" data-price="3000" data-label="باقة الرياضيات السريعة + ألعاب الذكاء" disabled>
+        <span class="pkg-label"><span class="pkg-name">باقة الرياضيات السريعة + ألعاب الذكاء</span><span class="pkg-price">3000 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="fastmath,flash,smart" for="pkg4">
+        <input type="radio" name="pkg" id="pkg4" value="pkg_fastmath_flash_smart" data-price="3500" data-label="باقة الرياضيات السريعة + Flash Anzan + ألعاب الذكاء" disabled>
+        <span class="pkg-label"><span class="pkg-name">باقة الرياضيات السريعة + Flash Anzan + ألعاب الذكاء</span><span class="pkg-price">3500 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="fastmath,mental" for="pkg5">
+        <input type="radio" name="pkg" id="pkg5" value="pkg_mental_fastmath" data-price="4000" data-label="باقة الحساب الذهني + الرياضيات السريعة" disabled>
+        <span class="pkg-label"><span class="pkg-name">باقة الحساب الذهني + الرياضيات السريعة</span><span class="pkg-price">4000 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="fastmath,flash,mental,smart" for="pkg6">
+        <input type="radio" name="pkg" id="pkg6" value="pkg_day1_full" data-price="4500" data-label="الباقة الكاملة لليوم الأول" disabled>
+        <span class="pkg-label"><span class="pkg-name">الباقة الكاملة لليوم الأول</span><span class="pkg-price">4500 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="memory,robotics" for="pkg7">
+        <input type="radio" name="pkg" id="pkg7" value="pkg_memory_robotics" data-price="4000" data-label="باقة الذاكرة + الروبوتيك" disabled>
+        <span class="pkg-label"><span class="pkg-name">باقة الذاكرة + الروبوتيك</span><span class="pkg-price">4000 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="languages,memory" for="pkg8">
+        <input type="radio" name="pkg" id="pkg8" value="pkg_memory_lang" data-price="4000" data-label="باقة الذاكرة + مسابقة اللغات" disabled>
+        <span class="pkg-label"><span class="pkg-name">باقة الذاكرة + مسابقة اللغات</span><span class="pkg-price">4000 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="languages,robotics" for="pkg9">
+        <input type="radio" name="pkg" id="pkg9" value="pkg_robotics_lang" data-price="4000" data-label="باقة الروبوتيك + مسابقة اللغات" disabled>
+        <span class="pkg-label"><span class="pkg-name">باقة الروبوتيك + مسابقة اللغات</span><span class="pkg-price">4000 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="languages,memory,robotics" for="pkg10">
+        <input type="radio" name="pkg" id="pkg10" value="pkg_day2_full" data-price="6000" data-label="الباقة الكاملة لليوم الثاني" disabled>
+        <span class="pkg-label"><span class="pkg-name">الباقة الكاملة لليوم الثاني</span><span class="pkg-price">6000 دج</span></span>
+      </label>
+
+      <label class="pkg-option" data-set="fastmath,flash,languages,mental,memory,robotics,smart" for="pkg11">
+        <input type="radio" name="pkg" id="pkg11" value="pkg_allin" data-price="10500" data-label="ALL IN – بطل الذكاء الشامل" disabled>
+        <span class="pkg-label"><span class="pkg-name">ALL IN – بطل الذكاء الشامل</span><span class="pkg-price">10500 دج</span></span>
+      </label>
+
+      <div class="total-box">
+        <span class="t-label" id="totalLabel">اختر مسابقة واحدة على الأقل</span>
+        <span class="t-value" id="totalPrice">0 دج</span>
+      </div>
+    </div>
+
+    <!-- 5. الدفع -->
+    <div class="step">
+      <div class="step-head">
+        <div class="step-num">5</div>
+        <h2>طريقة الدفع</h2>
+      </div>
+      <div class="choice-row">
+        <label class="choice"><input type="radio" name="payment" value="نقدًا" checked onchange="togglePaymentOther(false)"> نقدًا</label>
+        <label class="choice"><input type="radio" name="payment" value="تحويل بريدي CCP" onchange="togglePaymentOther(false)"> تحويل بريدي CCP</label>
+        <label class="choice"><input type="radio" name="payment" value="BaridiMob" onchange="togglePaymentOther(false)"> BaridiMob</label>
+        <label class="choice"><input type="radio" name="payment" value="أخرى" onchange="togglePaymentOther(true)"> أخرى</label>
+      </div>
+      <div class="field full hidden" id="paymentOtherField" style="margin-top:12px;">
+        <label>حدد طريقة الدفع</label>
+        <input type="text" id="paymentOther" placeholder="اذكر طريقة الدفع...">
+      </div>
+    </div>
+
+    <!-- 6. ملاحظات -->
+    <div class="step">
+      <div class="step-head">
+        <div class="step-num">6</div>
+        <h2>ملاحظات أو استفسار</h2>
+        <span class="hint"></span>
+      </div>
+      <div class="field full">
+        <label>هل لديك ملاحظة أو استفسار ضروري؟ <span class="opt">(اختياري)</span></label>
+        <textarea id="notes" placeholder="اكتب ملاحظتك هنا..."></textarea>
+      </div>
+    </div>
+
+    <!-- تأكيد -->
+    <div class="step">
+      <label class="consent-row">
+        <input type="checkbox" id="consent" required>
+        <span>أؤكد أنني قرأت معلومات البطولة والأسعار والباقات، وأن البيانات التي أدخلتها صحيحة.</span>
+      </label>
+
+      <button type="submit" id="submitBtn" class="btn-submit">
+        <i class="fa-solid fa-paper-plane"></i> إرسال طلب التسجيل
+      </button>
+
+      <div id="successMsg" class="msg-box msg-success"></div>
+      <div id="errorMsg" class="msg-box msg-error"></div>
+    </div>
+
+  </form>
+
+  <p class="footer-note">لجنة تنظيم كأس ملبو للذكاء الشامل &copy; 2026</p>
+</div>
+
+<script>
+  // ================== ضع هنا رابط Web App بعد نشر Code.gs ==================
+  const SCRIPT_WEB_APP_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+  const COMPETITIONS = {
+    mental:{label:"الحساب الذهني",price:2500},
+    fastmath:{label:"الرياضيات السريعة",price:2500},
+    smart:{label:"ألعاب الذكاء",price:1000},
+    flash:{label:"Flash Anzan",price:1000},
+    memory:{label:"الذاكرة التنافسية",price:2500},
+    robotics:{label:"الروبوتيك",price:2500},
+    languages:{label:"مسابقة اللغات",price:2500}
+  };
+
+  // تعبئة قائمة الأعمار (4 إلى 18 سنة)
+  (function fillAges(){
+    const sel = document.getElementById('age');
+    for(let a=4;a<=18;a++){
+      const opt = document.createElement('option');
+      opt.value = a; opt.textContent = a + ' سنة';
+      sel.appendChild(opt);
+    }
+  })();
+
+  function toggleCenter(show){
+    document.getElementById('centerField').style.display = show ? 'flex' : 'none';
+    document.getElementById('coachField').style.display = show ? 'flex' : 'none';
+  }
+
+  function togglePaymentOther(show){
+    document.getElementById('paymentOtherField').classList.toggle('hidden', !show);
+  }
+
+  function formatBirthDate(input){
+    let val = input.value.replace(/[^\d\/]/g,'');
+    if(!val.includes('/')){
+      if(val.length>2 && val.length<=4) val = val.substring(0,2)+'/'+val.substring(2);
+      else if(val.length>4) val = val.substring(0,2)+'/'+val.substring(2,4)+'/'+val.substring(4,8);
+    } else {
+      let p = val.split('/');
+      if(p[0] && p[0].length>2) p[0]=p[0].substring(0,2);
+      if(p[1] && p[1].length>2) p[1]=p[1].substring(0,2);
+      if(p[2] && p[2].length>4) p[2]=p[2].substring(0,4);
+      val = p.join('/');
+    }
+    input.value = val;
+  }
+
+  function autoCompleteDate(input){
+    let val = input.value.trim();
+    if(!val) return;
+    let p = val.split('/');
+    if(p.length===3){
+      let [d,m,y] = p.map(s=>s.trim());
+      if(d.length===1) d='0'+d;
+      if(m.length===1) m='0'+m;
+      if(y.length===2) y='20'+y;
+      if(d && m && y) input.value = d+'/'+m+'/'+y;
+    }
+  }
+
+  function isValidDatePattern(dateStr){
+    const m = dateStr.trim().match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if(!m) return false;
+    const day=+m[1], month=+m[2], year=+m[3];
+    return month>=1 && month<=12 && day>=1 && day<=31 && year>=1990 && year<=2025;
+  }
+
+  function getSelectedKeys(){
+    return Array.from(document.querySelectorAll('.comp-cb'))
+      .filter(cb=>cb.checked).map(cb=>cb.dataset.key).sort();
+  }
+
+  document.querySelectorAll('.comp-cb').forEach(cb=>{
+    cb.addEventListener('change', ()=>{
+      cb.closest('.comp-row').style.color = cb.checked ? 'var(--navy)' : '';
+      updatePackages();
+    });
+  });
+  document.querySelectorAll('input[name="pkg"]').forEach(r=>r.addEventListener('change', updateTotal));
+
+  function updatePackages(){
+    const selected = getSelectedKeys();
+    const selStr = selected.join(',');
+    document.querySelectorAll('.pkg-option[data-set]').forEach(el=>{
+      const setStr = el.dataset.set.split(',').sort().join(',');
+      const match = selected.length>0 && setStr===selStr;
+      const radio = el.querySelector('input[type=radio]');
+      radio.disabled = !match;
+      el.classList.toggle('pkg-disabled', !match);
+      if(!match && radio.checked){ radio.checked = false; }
+    });
+    const indiv = document.getElementById('pkg_individual');
+    indiv.disabled = selected.length===0;
+    if(selected.length===0){
+      indiv.checked = false;
+    } else if(!document.querySelector('input[name="pkg"]:checked')){
+      indiv.checked = true;
+    }
+    updateTotal();
+  }
+
+  function updateTotal(){
+    const selected = getSelectedKeys();
+    const checkedPkg = document.querySelector('input[name="pkg"]:checked');
+    let total = 0, label = 'اختر مسابقة واحدة على الأقل';
+    if(selected.length>0){
+      if(checkedPkg && checkedPkg.value !== 'individual'){
+        total = parseInt(checkedPkg.dataset.price,10);
+        label = checkedPkg.dataset.label;
+      } else {
+        total = selected.reduce((s,k)=>s+COMPETITIONS[k].price,0);
+        label = 'تسجيل فردي حسب المسابقة (' + selected.length + ')';
+      }
+    }
+    document.getElementById('totalPrice').textContent = total.toLocaleString('en-US') + ' دج';
+    document.getElementById('totalLabel').textContent = label;
+  }
+
+  function submitData(e){
+    e.preventDefault();
+    const errBox = document.getElementById('errorMsg');
+    const succBox = document.getElementById('successMsg');
+    errBox.style.display='none'; succBox.style.display='none';
+
+    const birthInput = document.getElementById('birth');
+    autoCompleteDate(birthInput);
+    if(!isValidDatePattern(birthInput.value)){
+      errBox.innerText = '⚠️ يرجى إدخال تاريخ الميلاد بصيغة صحيحة JJ/MM/AAAA';
+      errBox.style.display='block';
+      birthInput.focus();
+      return;
+    }
+
+    const selected = getSelectedKeys();
+    if(selected.length===0){
+      errBox.innerText = '⚠️ يرجى اختيار مسابقة واحدة على الأقل';
+      errBox.style.display='block';
+      return;
+    }
+
+    if(!document.getElementById('consent').checked){
+      errBox.innerText = '⚠️ يرجى الموافقة على الإقرار قبل الإرسال';
+      errBox.style.display='block';
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري الإرسال...';
+
+    const checkedPkg = document.querySelector('input[name="pkg"]:checked');
+    const isIndividual = !checkedPkg || checkedPkg.value === 'individual';
+    const total = isIndividual
+      ? selected.reduce((s,k)=>s+COMPETITIONS[k].price,0)
+      : parseInt(checkedPkg.dataset.price,10);
+    const pkgLabel = isIndividual ? 'تسجيل فردي حسب المسابقة' : checkedPkg.dataset.label;
+    const hasCenter = document.querySelector('input[name="hasCenter"]:checked').value;
+    const payment = document.querySelector('input[name="payment"]:checked').value;
+    const paymentOther = document.getElementById('paymentOther').value.trim();
+
+    const payload = {
+      compTitle: "كأس ملبو للذكاء الشامل",
+      compDate: "02-03/10/2026",
+      fullName: document.getElementById('fullName').value.trim(),
+      birth: birthInput.value.trim(),
+      age: document.getElementById('age').value,
+      gender: document.querySelector('input[name="gender"]:checked').value,
+      parentName: document.getElementById('parentName').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      city: document.getElementById('city').value.trim(),
+      hasCenter: hasCenter,
+      center: hasCenter==='نعم' ? document.getElementById('center').value.trim() : '',
+      coach: hasCenter==='نعم' ? document.getElementById('coach').value.trim() : '',
+      competitionsDay1: selected.filter(k=>['mental','fastmath','smart','flash'].includes(k)).map(k=>COMPETITIONS[k].label).join('، '),
+      competitionsDay2: selected.filter(k=>['memory','robotics','languages'].includes(k)).map(k=>COMPETITIONS[k].label).join('، '),
+      package: pkgLabel,
+      totalPrice: total,
+      payment: payment==='أخرى' && paymentOther ? ('أخرى: ' + paymentOther) : payment,
+      notes: document.getElementById('notes').value.trim()
+    };
+
+    fetch(SCRIPT_WEB_APP_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    }).then(()=>{
+      btn.disabled=false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> إرسال طلب التسجيل';
+      succBox.innerHTML = '✅ تم استلام طلب تسجيل <strong>'+payload.fullName+'</strong> بنجاح، وسيتم التواصل معكم لتأكيد الدفع.';
+      succBox.style.display='block';
+      document.getElementById('regForm').reset();
+      toggleCenter(false);
+      togglePaymentOther(false);
+      updatePackages();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }).catch(err=>{
+      btn.disabled=false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> إعادة المحاولة';
+      errBox.innerText = '❌ حدث خطأ أثناء الإرسال: ' + err.message;
+      errBox.style.display='block';
+    });
+  }
+</script>
+</body>
+</html>
