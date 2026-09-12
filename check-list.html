@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التأكد من قائمة المشاركين — كأس ملبو للذكاء الشامل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --navy:#0f1e3d;
+    --navy-light:#173463;
+    --gold:#c8992e;
+    --gold-light:#e7c877;
+    --cream:#f8f6f0;
+    --ink:#1c2434;
+    --muted:#657089;
+    --border:#e2e0d6;
+    --success:#136c4a;
+    --danger:#a4291f;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Cairo',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    padding-bottom:60px;
+    min-height:100vh;
+  }
+  h1,h2,h3,.display{font-family:'El Messiri',serif;}
+
+  .topbar{
+    background:var(--navy);
+    color:#fff;
+    padding:14px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .topbar-title{
+    font-family:'El Messiri',serif;
+    font-size:1.05rem;
+    color:var(--gold-light);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .btn-back{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
+    color:#fff;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:8px;
+    font-size:0.85rem;
+    font-weight:700;
+    transition:background 0.2s;
+  }
+  .btn-back:hover{background:rgba(255,255,255,0.2);}
+
+  .wrap{max-width:960px;margin:0 auto;padding:26px 16px 0;}
+
+  .page-title{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);
+    color:#fff;
+    border-radius:14px;
+    padding:22px 24px;
+    margin-bottom:22px;
+    text-align:center;
+    box-shadow:0 6px 20px rgba(15,30,61,0.2);
+  }
+  .page-title h1{
+    font-size:1.4rem;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+  }
+  .page-title h1 i{color:var(--gold-light);}
+  .page-title p{font-size:0.85rem;color:#cfd8ec;margin-top:6px;}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:18px;
+  }
+
+  .filter-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;
+    margin-bottom:18px;
+  }
+  .field{display:flex;flex-direction:column;gap:6px;}
+  label{font-size:0.86rem;font-weight:700;color:#3c4356;}
+  label .req{color:var(--danger);}
+  select,input[type=text],input[type=tel]{
+    padding:11px 13px;
+    border-radius:9px;
+    border:1.5px solid var(--border);
+    font-size:0.94rem;
+    font-family:'Cairo',sans-serif;
+    background:#fbfaf7;
+    outline:none;
+    color:var(--ink);
+    width:100%;
+  }
+  select:focus,input:focus{border-color:var(--navy-light);background:#fff;}
+  select:disabled{background:#f1f0ea;color:#7a7f8c;cursor:not-allowed;}
+
+  .btn-primary{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:var(--navy);
+    color:#fff;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    font-family:'Cairo',sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    transition:background 0.2s;
+  }
+  .btn-primary:hover{background:var(--navy-light);}
+  .btn-primary:disabled{background:#9aa3b5;cursor:not-allowed;}
+
+  .msg-box{
+    display:none;
+    padding:14px;
+    border-radius:10px;
+    margin-top:14px;
+    font-weight:700;
+    font-size:0.92rem;
+    text-align:center;
+  }
+  .msg-error{background:#fdeeed;border:1px solid #f0b8b3;color:var(--danger);}
+  .msg-info{background:#fffaf0;border:1px solid var(--gold-light);color:#7a5a10;}
+
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:12px;
+    margin-bottom:22px;
+  }
+  .stat-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:16px 10px;
+    text-align:center;
+    transition:transform 0.2s;
+  }
+  .stat-card:hover{transform:translateY(-3px);}
+  .stat-card .num{
+    font-family:'El Messiri',serif;
+    font-size:1.7rem;
+    font-weight:700;
+    color:var(--navy);
+    line-height:1.2;
+  }
+  .stat-card .lbl{
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-top:4px;
+    font-weight:600;
+  }
+  .stat-total{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);}
+  .stat-total .num{color:var(--gold-light);}
+  .stat-total .lbl{color:#cfd8ec;}
+
+  .table-wrap{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.86rem;
+  }
+  thead{
+    background:var(--navy);
+    color:#fff;
+  }
+  thead th{
+    padding:12px 8px;
+    font-weight:700;
+    font-size:0.82rem;
+    text-align:right;
+  }
+  tbody td{
+    padding:11px 8px;
+    border-bottom:1px solid #edece5;
+    vertical-align:middle;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#fbfaf7;}
+
+  .cell-actions{display:flex;gap:6px;justify-content:flex-end;}
+  .btn-icon{
+    background:var(--navy);
+    color:#fff;
+    border:none;
+    padding:6px 10px;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:0.78rem;
+    font-family:'Cairo',sans-serif;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    transition:background 0.2s;
+    white-space:nowrap;
+  }
+  .btn-icon:hover{background:var(--navy-light);}
+  .btn-icon.btn-save{background:var(--success);}
+  .btn-icon.btn-save:hover{background:#0e5738;}
+  .btn-icon.btn-cancel{background:var(--muted);}
+  .btn-icon.btn-cancel:hover{background:#4a5568;}
+
+  .edit-input{
+    width:100%;
+    padding:7px 9px;
+    border-radius:7px;
+    border:1.5px solid var(--navy-light);
+    font-size:0.86rem;
+    font-family:'Cairo',sans-serif;
+    background:#fff;
+    outline:none;
+  }
+
+  .badge{
+    display:inline-block;
+    padding:3px 8px;
+    border-radius:6px;
+    font-size:0.72rem;
+    font-weight:700;
+    margin:1px 2px;
+  }
+  .badge-yes{background:#e6f9ee;color:#128c3f;}
+  .badge-no{background:#f4f3ef;color:#8a8a8a;}
+
+  .empty-state{
+    text-align:center;
+    padding:40px 20px;
+    color:var(--muted);
+    font-size:0.95rem;
+  }
+  .empty-state i{
+    font-size:2.5rem;
+    color:var(--border);
+    margin-bottom:12px;
+    display:block;
+  }
+
+  .hidden{display:none !important;}
+
+  .loading{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+    font-size:0.95rem;
+  }
+
+  @media (max-width:640px){
+    table{font-size:0.78rem;}
+    thead th, tbody td{padding:8px 5px;}
+    .stat-card .num{font-size:1.3rem;}
+    .page-title h1{font-size:1.1rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-title">
+    <i class="fa-solid fa-trophy"></i>
+    <span>كأس ملبو للذكاء الشامل</span>
+  </div>
+  <a href="index.html" class="btn-back">
+    <i class="fa-solid fa-arrow-right"></i>
+    <span>رجوع للتسجيل</span>
+  </a>
+</div>
+
+<div class="wrap">
+
+  <div class="page-title">
+    <h1><i class="fa-solid fa-list-check"></i> التأكد من قائمة المشاركين</h1>
+    <p>أدخل بياناتك للتحقق من قائمة المشاركين الذين سجلتهم</p>
+  </div>
+
+  <!-- نموذج البحث -->
+  <div class="card" id="searchCard">
+    <div class="filter-grid">
+      <div class="field">
+        <label>اسم المركز / النادي <span class="req">*</span></label>
+        <select id="centerSelect" onchange="onCenterChange()">
+          <option value="">-- جاري التحميل... --</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>اسم ولقب المدرب <span class="req">*</span></label>
+        <select id="coachSelect" disabled>
+          <option value="">-- اختر المدرب --</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>رقم الهاتف (كلمة السر) بدون صفر <span class="req">*</span></label>
+        <input type="tel" id="passwordInput" placeholder="مثال: 666925680" inputmode="numeric">
+      </div>
+    </div>
+    <button type="button" class="btn-primary" id="searchBtn" onclick="loadMyList()">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>عرض قائمتي</span>
+    </button>
+    <div id="errorMsg" class="msg-box msg-error"></div>
+  </div>
+
+  <!-- الإحصائيات -->
+  <div id="statsSection" class="hidden">
+    <div class="stats-grid" id="statsGrid"></div>
+  </div>
+
+  <!-- جدول المشاركين -->
+  <div id="tableSection" class="hidden">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>اللقب</th>
+            <th>الاسم</th>
+            <th>تاريخ الميلاد</th>
+            <th>المستوى</th>
+            <th>المسابقات</th>
+            <th>إجراءات</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="loadingSection" class="loading hidden">
+    <i class="fa-solid fa-spinner fa-spin"></i> جاري التحميل...
+  </div>
+
+</div>
+
+<script>
+  /* ============================================================
+     رابط الـ Web App الخاص بـ Google Apps Script
+     ⚠️ ضع هنا نفس الرابط الموجود في index.html
+     ============================================================ */
+  const SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzuJdntv-4mfaH7UtGychpxDpQT-CwZJUjHVR-68PDKLlidC1yCzyZOsaan8Cx63OtT/exec";
+
+  const SOROBAN_LEVELS = {
+    "0": "تحضيري",
+    "1": "المستوى 1",
+    "2": "المستوى 2",
+    "3": "المستوى 3",
+    "4": "المستوى 4",
+    "5": "المستوى 5"
+  };
+
+  let currentParticipants = [];
+  let currentCenter = "";
+  let currentCoach = "";
+  let currentPassword = "";
+
+  /* ============================================================
+     JSONP helper
+     ============================================================ */
+  function jsonpRequest(params, callback, timeoutMs) {
+    timeoutMs = timeoutMs || 15000;
+    const cbName = 'cb_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+    let completed = false;
+
+    window[cbName] = function(res){
+      completed = true;
+      delete window[cbName];
+      callback(res);
+    };
+
+    const query = Object.keys(params).map(function(k){
+      return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+    }).join('&');
+
+    const script = document.createElement('script');
+    script.src = SCRIPT_WEB_APP_URL + '?callback=' + cbName + '&' + query;
+    document.body.appendChild(script);
+
+    setTimeout(function(){
+      if (!completed && window[cbName]) {
+        delete window[cbName];
+        callback({ success: false, error: "انتهت مدة الاتصال بالخادم" });
+      }
+    }, timeoutMs);
+  }
+
+  /* ============================================================
+     تحميل المراكز عند فتح الصفحة
+     ============================================================ */
+  document.addEventListener('DOMContentLoaded', function(){
+    loadCenters();
+  });
+
+  function loadCenters(){
+    const sel = document.getElementById('centerSelect');
+    sel.innerHTML = '<option value="">-- جاري التحميل... --</option>';
+
+    jsonpRequest({ action: 'getCenters' }, function(res){
+      if (!res || !res.success){
+        sel.innerHTML = '<option value="">-- خطأ في التحميل --</option>';
+        showError(res && res.error ? res.error : 'فشل تحميل المراكز');
+        return;
+      }
+      if (!res.centers || res.centers.length === 0){
+        sel.innerHTML = '<option value="">-- لا توجد مراكز مسجلة --</option>';
+        return;
+      }
+      let html = '<option value="">-- اختر المركز --</option>';
+      res.centers.forEach(function(c){
+        html += '<option value="' + escapeHtml(c) + '">' + escapeHtml(c) + '</option>';
+      });
+      sel.innerHTML = html;
+    });
+  }
+
+  /* ============================================================
+     عند اختيار مركز، حمّل مدربيه
+     ============================================================ */
+  function onCenterChange(){
+    const center = document.getElementById('centerSelect').value;
+    const coachSel = document.getElementById('coachSelect');
+    coachSel.disabled = true;
+    coachSel.innerHTML = '<option value="">-- اختر المدرب --</option>';
+
+    if (!center) return;
+
+    coachSel.innerHTML = '<option value="">-- جاري التحميل... --</option>';
+
+    jsonpRequest({ action: 'getCoaches', center: center }, function(res){
+      if (!res || !res.success){
+        coachSel.innerHTML = '<option value="">-- خطأ --</option>';
+        showError(res && res.error ? res.error : 'فشل تحميل المدربين');
+        return;
+      }
+      if (!res.coaches || res.coaches.length === 0){
+        coachSel.innerHTML = '<option value="">-- لا يوجد مدربون --</option>';
+        return;
+      }
+      let html = '<option value="">-- اختر المدرب --</option>';
+      res.coaches.forEach(function(c){
+        html += '<option value="' + escapeHtml(c) + '">' + escapeHtml(c) + '</option>';
+      });
+      coachSel.innerHTML = html;
+      coachSel.disabled = false;
+    });
+  }
+
+  /* ============================================================
+     عرض قائمة المشاركين
+     ============================================================ */
+  function loadMyList(){
+    hideError();
+    const center = document.getElementById('centerSelect').value.trim();
+    const coach = document.getElementById('coachSelect').value.trim();
+    const password = document.getElementById('passwordInput').value.trim().replace(/^0+/, '');
+
+    if (!center){ showError('الرجاء اختيار المركز'); return; }
+    if (!coach){ showError('الرجاء اختيار المدرب'); return; }
+    if (!password){ showError('الرجاء إدخال رقم الهاتف (كلمة السر)'); return; }
+    if (!/^\d{9,10}$/.test(password)){
+      showError('رقم الهاتف غير صحيح. أدخل 9 أو 10 أرقام بدون صفر في البداية.');
+      return;
+    }
+
+    currentCenter = center;
+    currentCoach = coach;
+    currentPassword = password;
+
+    document.getElementById('statsSection').classList.add('hidden');
+    document.getElementById('tableSection').classList.add('hidden');
+    document.getElementById('loadingSection').classList.remove('hidden');
+
+    const btn = document.getElementById('searchBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري البحث...';
+
+    jsonpRequest({
+      action: 'getMyList',
+      center: center,
+      coach: coach,
+      password: password
+    }, function(res){
+      document.getElementById('loadingSection').classList.add('hidden');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i> عرض قائمتي';
+
+      if (!res || !res.success){
+        showError(res && res.error ? res.error : 'فشل جلب البيانات');
+        return;
+      }
+
+      currentParticipants = res.participants || [];
+      renderStats(res.stats);
+      renderTable(currentParticipants);
+
+      document.getElementById('statsSection').classList.remove('hidden');
+      document.getElementById('tableSection').classList.remove('hidden');
+    });
+  }
+
+  /* ============================================================
+     عرض الإحصائيات
+     ============================================================ */
+  function renderStats(stats){
+    stats = stats || {};
+    const items = [
+      { num: stats.total || 0, lbl: 'إجمالي المشاركين', total: true },
+      { num: stats.mental || 0, lbl: 'الحساب الذهني' },
+      { num: stats.fastmath || 0, lbl: 'الرياضيات السريعة' },
+      { num: stats.smart || 0, lbl: 'ألعاب الذكاء' },
+      { num: stats.flash || 0, lbl: 'Flash Anzan' },
+      { num: stats.memory || 0, lbl: 'الذاكرة التنافسية' },
+      { num: stats.robotics || 0, lbl: 'الروبوتيك' },
+      { num: stats.languages || 0, lbl: 'اللغات' }
+    ];
+
+    let html = '';
+    items.forEach(function(it){
+      html += '<div class="stat-card' + (it.total ? ' stat-total' : '') + '">';
+      html += '<div class="num">' + it.num + '</div>';
+      html += '<div class="lbl">' + it.lbl + '</div>';
+      html += '</div>';
+    });
+    document.getElementById('statsGrid').innerHTML = html;
+  }
+
+  /* ============================================================
+     عرض جدول المشاركين
+     ============================================================ */
+  function renderTable(participants){
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+
+    if (!participants || participants.length === 0){
+      tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><i class="fa-solid fa-inbox"></i>لا يوجد مشاركون مسجلون لهذا المدرب</td></tr>';
+      return;
+    }
+
+    participants.forEach(function(p, idx){
+      const tr = document.createElement('tr');
+      tr.id = 'row-' + p.rowIndex;
+
+      // المسابقات
+      let compsHtml = '';
+      const day1 = (p.competitionsDay1 || '').split('، ').filter(function(x){ return x.trim(); });
+      const day2 = (p.competitionsDay2 || '').split('، ').filter(function(x){ return x.trim(); });
+      day1.forEach(function(c){
+        compsHtml += '<span class="badge badge-yes">' + escapeHtml(c) + '</span> ';
+      });
+      day2.forEach(function(c){
+        compsHtml += '<span class="badge badge-yes">' + escapeHtml(c) + '</span> ';
+      });
+      if (!compsHtml) compsHtml = '<span class="badge badge-no">لا يوجد</span>';
+
+      // المستوى
+      let lvlHtml = '—';
+      if (p.sorobanLevel !== undefined && p.sorobanLevel !== ''){
+        lvlHtml = SOROBAN_LEVELS[p.sorobanLevel] || ('مستوى ' + p.sorobanLevel);
+      }
+
+      tr.innerHTML =
+        '<td>' + (idx + 1) + '</td>' +
+        '<td class="cell-last">' + escapeHtml(p.lastName) + '</td>' +
+        '<td class="cell-first">' + escapeHtml(p.firstName) + '</td>' +
+        '<td>' + escapeHtml(p.birth) + '</td>' +
+        '<td>' + escapeHtml(lvlHtml) + '</td>' +
+        '<td>' + compsHtml + '</td>' +
+        '<td><div class="cell-actions">' +
+          '<button class="btn-icon" onclick="enableEditRow(' + p.rowIndex + ')" title="تعديل الاسم واللقب">' +
+            '<i class="fa-solid fa-pen"></i> تعديل' +
+          '</button>' +
+        '</div></td>';
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  /* ============================================================
+     تعديل صف
+     ============================================================ */
+  function enableEditRow(rowIndex){
+    const tr = document.getElementById('row-' + rowIndex);
+    if (!tr) return;
+
+    // إذا كان في وضع التعديل مسبقاً، تجاهل
+    if (tr.dataset.editing === '1') return;
+    tr.dataset.editing = '1';
+
+    // احفظ القيم الأصلية
+    const lastCell = tr.querySelector('.cell-last');
+    const firstCell = tr.querySelector('.cell-first');
+    const origLast = lastCell.textContent;
+    const origFirst = firstCell.textContent;
+
+    // حوّل الخليتين إلى input
+    lastCell.innerHTML = '<input type="text" class="edit-input" id="editLast-' + rowIndex + '" value="' + escapeHtml(origLast) + '">';
+    firstCell.innerHTML = '<input type="text" class="edit-input" id="editFirst-' + rowIndex + '" value="' + escapeHtml(origFirst) + '">';
+
+    // غيّر زر التعديل إلى حفظ/إلغاء
+    const actions = tr.querySelector('.cell-actions');
+    actions.innerHTML =
+      '<button class="btn-icon btn-save" onclick="saveEditRow(' + rowIndex + ')">' +
+        '<i class="fa-solid fa-check"></i> حفظ' +
+      '</button>' +
+      '<button class="btn-icon btn-cancel" onclick="cancelEditRow(' + rowIndex + ', \'' + escapeJs(origLast) + '\', \'' + escapeJs(origFirst) + '\')">' +
+        '<i class="fa-solid fa-xmark"></i> إلغاء' +
+      '</button>';
+
+    // ركّز على أول حقل
+    setTimeout(function(){
+      const inp = document.getElementById('editLast-' + rowIndex);
+      if (inp) inp.focus();
+    }, 50);
+  }
+
+  function cancelEditRow(rowIndex, origLast, origFirst){
+    const tr = document.getElementById('row-' + rowIndex);
+    if (!tr) return;
+    tr.dataset.editing = '0';
+
+    tr.querySelector('.cell-last').textContent = origLast;
+    tr.querySelector('.cell-first').textContent = origFirst;
+    tr.querySelector('.cell-actions').innerHTML =
+      '<button class="btn-icon" onclick="enableEditRow(' + rowIndex + ')" title="تعديل الاسم واللقب">' +
+        '<i class="fa-solid fa-pen"></i> تعديل' +
+      '</button>';
+  }
+
+  function saveEditRow(rowIndex){
+    const lastInput = document.getElementById('editLast-' + rowIndex);
+    const firstInput = document.getElementById('editFirst-' + rowIndex);
+    if (!lastInput || !firstInput) return;
+
+    const newLast = lastInput.value.trim();
+    const newFirst = firstInput.value.trim();
+
+    if (!newLast || !newFirst){
+      alert('⚠️ الرجاء إدخال اللقب والاسم');
+      return;
+    }
+
+    // تعطيل الأزرار أثناء الحفظ
+    const actions = document.querySelector('#row-' + rowIndex + ' .cell-actions');
+    actions.innerHTML = '<button class="btn-icon" disabled><i class="fa-solid fa-spinner fa-spin"></i> جاري الحفظ...</button>';
+
+    jsonpRequest({
+      action: 'updateName',
+      center: currentCenter,
+      coach: currentCoach,
+      password: currentPassword,
+      rowIndex: rowIndex,
+      newLastName: newLast,
+      newFirstName: newFirst
+    }, function(res){
+      if (!res || !res.success){
+        alert('❌ ' + (res && res.error ? res.error : 'فشل الحفظ'));
+        // استعادة الأزرار
+        const tr = document.getElementById('row-' + rowIndex);
+        if (tr){
+          tr.dataset.editing = '0';
+          tr.querySelector('.cell-last').innerHTML = lastInput.value;
+          tr.querySelector('.cell-first').innerHTML = firstInput.value;
+          actions.innerHTML =
+            '<button class="btn-icon" onclick="enableEditRow(' + rowIndex + ')" title="تعديل الاسم واللقب">' +
+              '<i class="fa-solid fa-pen"></i> تعديل' +
+            '</button>';
+        }
+        return;
+      }
+
+      // نجاح
+      const tr = document.getElementById('row-' + rowIndex);
+      if (tr){
+        tr.dataset.editing = '0';
+        tr.querySelector('.cell-last').textContent = newLast;
+        tr.querySelector('.cell-first').textContent = newFirst;
+        actions.innerHTML =
+          '<button class="btn-icon" onclick="enableEditRow(' + rowIndex + ')" title="تعديل الاسم واللقب">' +
+            '<i class="fa-solid fa-pen"></i> تعديل' +
+          '</button>';
+      }
+
+      // تحديث في الذاكرة أيضاً
+      currentParticipants.forEach(function(p){
+        if (p.rowIndex === rowIndex){
+          p.lastName = newLast;
+          p.firstName = newFirst;
+        }
+      });
+
+      // إشعار بسيط
+      const notify = document.createElement('div');
+      notify.textContent = '✅ تم حفظ التعديل بنجاح';
+      notify.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#136c4a;color:#fff;padding:12px 20px;border-radius:10px;font-weight:700;z-index:9999;box-shadow:0 4px 15px rgba(0,0,0,0.2);';
+      document.body.appendChild(notify);
+      setTimeout(function(){ notify.remove(); }, 2500);
+    });
+  }
+
+  /* ============================================================
+     أدوات مساعدة
+     ============================================================ */
+  function showError(msg){
+    const el = document.getElementById('errorMsg');
+    el.textContent = '⚠️ ' + msg;
+    el.style.display = 'block';
+    setTimeout(function(){ el.style.display = 'none'; }, 6000);
+  }
+  function hideError(){
+    document.getElementById('errorMsg').style.display = 'none';
+  }
+  function escapeHtml(str){
+    if (str === undefined || str === null) return '';
+    return String(str).replace(/[&<>"']/g, function(m){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
+    });
+  }
+  function escapeJs(str){
+    if (str === undefined || str === null) return '';
+    return String(str).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'\\"').replace(/\n/g,'\\n');
+  }
+</script>
+</body>
+</html>
