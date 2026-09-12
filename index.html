@@ -20,6 +20,7 @@
     --success:#136c4a;
     --danger:#a4291f;
     --card:#ffffff;
+    --zed:#4f46e5;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{
@@ -31,13 +32,11 @@
   }
   h1,h2,h3,.display{font-family:'El Messiri',serif;}
 
-  /* ===== Header ===== */
   .hero{
     background:radial-gradient(1200px 500px at 20% -10%, var(--navy-light), var(--navy) 60%);
     color:#fff;
-    padding:46px 20px 54px;
+    padding:46px 20px 40px;
     text-align:center;
-    position:relative;
   }
   .logo-slot{
     width:104px;height:104px;border-radius:50%;
@@ -62,8 +61,7 @@
   }
   .badge i{color:var(--gold-light);}
 
-  /* ===== Layout ===== */
-  .wrap{max-width:760px;margin:-26px auto 0;padding:0 16px;}
+  .wrap{max-width:760px;margin:0 auto;padding:26px 16px 0;}
   .notice{
     background:#fffaf0;border:1px solid var(--gold-light);
     color:#7a5a10;padding:14px 16px;border-radius:10px;
@@ -86,7 +84,6 @@
     font-weight:700;font-family:'El Messiri',serif;font-size:0.95rem;
   }
   .step-head h2{font-size:1.12rem;color:var(--navy);font-weight:700;}
-  .step-head span.hint{display:block;font-size:0.78rem;color:var(--muted);font-weight:400;margin-top:2px;font-family:'Cairo',sans-serif;}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
   .field{display:flex;flex-direction:column;gap:6px;}
@@ -97,6 +94,7 @@
   input[type=text],input[type=tel],input[type=email],select,textarea{
     padding:11px 13px;border-radius:9px;border:1.5px solid var(--border);
     font-size:0.94rem;font-family:'Cairo',sans-serif;background:#fbfaf7;outline:none;color:var(--ink);
+    width:100%;
   }
   input:focus,select:focus,textarea:focus{border-color:var(--navy-light);background:#fff;}
   textarea{resize:vertical;min-height:70px;}
@@ -108,7 +106,6 @@
     font-size:0.88rem;font-weight:600;cursor:pointer;
   }
   .choice input{width:16px;height:16px;cursor:pointer;}
-  .choice.checked{border-color:var(--navy-light);background:#eef2f9;}
 
   .day-block{border:1px solid var(--border);border-radius:11px;padding:14px 14px 6px;background:#fcfbf8;margin-bottom:14px;}
   .day-title{font-weight:700;color:var(--navy);font-size:0.92rem;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
@@ -158,6 +155,36 @@
   .msg-success{background:#eefaf3;border:1px solid #a8dcc2;color:var(--success);}
   .msg-error{background:#fdeeed;border:1px solid #f0b8b3;color:var(--danger);}
 
+  .zed-banner{
+    margin-top:6px;background:linear-gradient(135deg,#eef2ff 0%,#e0e7ff 100%);
+    border:1.5px solid #c7d2fe;border-radius:12px;padding:15px 18px;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+  .zed-title{font-size:0.92rem;font-weight:800;color:#3730a3;display:flex;align-items:center;gap:8px;}
+  .zed-link{
+    display:inline-flex;align-items:center;gap:6px;background:var(--zed);color:#fff !important;
+    text-decoration:none;padding:9px 16px;border-radius:8px;font-size:0.85rem;font-weight:700;
+  }
+  .zed-link:hover{background:#4338ca;}
+
+  .contact-block{
+    margin-top:14px;border:1px solid var(--border);border-radius:12px;padding:16px 18px;background:#fff;
+  }
+  .contact-block h3{font-size:0.95rem;color:var(--navy);margin-bottom:10px;}
+  .contact-links{display:flex;flex-wrap:wrap;gap:10px;}
+  .contact-links a{
+    display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+    padding:9px 14px;border-radius:8px;font-size:0.85rem;font-weight:700;
+  }
+  .link-messenger{background:#e7f0ff;color:#0b5fff !important;}
+  .link-whatsapp{background:#e6f9ee;color:#128c3f !important;}
+
+  .footer-credit{
+    margin-top:24px;text-align:center;font-size:0.85rem;color:var(--muted);font-weight:700;
+    padding-top:16px;border-top:1px dashed var(--border);
+  }
+  .footer-credit a{color:var(--navy);text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:6px;margin-top:6px;}
+
   .footer-note{text-align:center;color:var(--muted);font-size:0.82rem;margin-top:26px;}
 </style>
 </head>
@@ -187,58 +214,107 @@
 
   <form id="regForm" onsubmit="submitData(event)">
 
-    <!-- 1. معلومات المشارك -->
     <div class="step">
       <div class="step-head">
         <div class="step-num">1</div>
         <h2>معلومات المشارك</h2>
       </div>
       <div class="grid">
-        <div class="field full">
-          <label>الاسم واللقب <span class="req">*</span></label>
-          <input type="text" id="fullName" placeholder="اسم ولقب المشارك..." required>
+        <div class="field">
+          <label>لقب المشارك <span class="req">*</span></label>
+          <input type="text" id="lastName" placeholder="لقب المشارك..." required>
         </div>
         <div class="field">
+          <label>اسم المشارك <span class="req">*</span></label>
+          <input type="text" id="firstName" placeholder="اسم المشارك..." required>
+        </div>
+        <div class="field full">
           <label>تاريخ الميلاد <span class="req">*</span></label>
           <input type="text" id="birth" placeholder="JJ/MM/AAAA" maxlength="10" required oninput="formatBirthDate(this)" onblur="autoCompleteDate(this)">
-        </div>
-        <div class="field">
-          <label>العمر <span class="req">*</span></label>
-          <select id="age" required>
-            <option value="">-- اختر العمر --</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>الجنس <span class="req">*</span></label>
-          <div class="choice-row">
-            <label class="choice"><input type="radio" name="gender" value="ذكر" required> ذكر</label>
-            <label class="choice"><input type="radio" name="gender" value="أنثى"> أنثى</label>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- 2. معلومات الولي -->
     <div class="step">
       <div class="step-head">
         <div class="step-num">2</div>
-        <h2>معلومات الولي</h2>
+        <h2>معلومات المدرب أو الولي</h2>
       </div>
       <div class="grid">
         <div class="field">
-          <label>اسم ولقب الولي <span class="req">*</span></label>
-          <input type="text" id="parentName" placeholder="اسم ولقب الولي..." required>
+          <label>اسم ولقب المدرب أو الولي <span class="req">*</span></label>
+          <input type="text" id="parentName" placeholder="اسم ولقب المدرب أو الولي..." required>
         </div>
         <div class="field">
           <label>رقم الهاتف / واتساب <span class="req">*</span></label>
           <input type="tel" id="phone" placeholder="0555 XX XX XX" required>
         </div>
         <div class="field full">
-          <label>المدينة / الولاية <span class="req">*</span></label>
-          <input type="text" id="city" placeholder="مثال: بجاية" required>
+          <label>الولاية <span class="req">*</span></label>
+          <select id="wilaya" required>
+            <option value="">-- اختر الولاية --</option>
+            <option value="01 - أدرار">01 - أدرار</option>
+            <option value="02 - الشلف">02 - الشلف</option>
+            <option value="03 - الأغواط">03 - الأغواط</option>
+            <option value="04 - أم البواقي">04 - أم البواقي</option>
+            <option value="05 - باتنة">05 - باتنة</option>
+            <option value="06 - بجاية">06 - بجاية</option>
+            <option value="07 - بسكرة">07 - بسكرة</option>
+            <option value="08 - بشار">08 - بشار</option>
+            <option value="09 - البليدة">09 - البليدة</option>
+            <option value="10 - البويرة">10 - البويرة</option>
+            <option value="11 - تمنراست">11 - تمنراست</option>
+            <option value="12 - تبسة">12 - تبسة</option>
+            <option value="13 - تلمسان">13 - تلمسان</option>
+            <option value="14 - تيارت">14 - تيارت</option>
+            <option value="15 - تيزي وزو">15 - تيزي وزو</option>
+            <option value="16 - الجزائر">16 - الجزائر</option>
+            <option value="17 - الجلفة">17 - الجلفة</option>
+            <option value="18 - جيجل">18 - جيجل</option>
+            <option value="19 - سطيف">19 - سطيف</option>
+            <option value="20 - سعيدة">20 - سعيدة</option>
+            <option value="21 - سكيكدة">21 - سكيكدة</option>
+            <option value="22 - سيدي بلعباس">22 - سيدي بلعباس</option>
+            <option value="23 - عنابة">23 - عنابة</option>
+            <option value="24 - قالمة">24 - قالمة</option>
+            <option value="25 - قسنطينة">25 - قسنطينة</option>
+            <option value="26 - المدية">26 - المدية</option>
+            <option value="27 - مستغانم">27 - مستغانم</option>
+            <option value="28 - المسيلة">28 - المسيلة</option>
+            <option value="29 - معسكر">29 - معسكر</option>
+            <option value="30 - ورقلة">30 - ورقلة</option>
+            <option value="31 - وهران">31 - وهران</option>
+            <option value="32 - البيض">32 - البيض</option>
+            <option value="33 - إليزي">33 - إليزي</option>
+            <option value="34 - برج بوعريريج">34 - برج بوعريريج</option>
+            <option value="35 - بومرداس">35 - بومرداس</option>
+            <option value="36 - الطارف">36 - الطارف</option>
+            <option value="37 - تندوف">37 - تندوف</option>
+            <option value="38 - تسمسيلت">38 - تسمسيلت</option>
+            <option value="39 - الوادي">39 - الوادي</option>
+            <option value="40 - خنشلة">40 - خنشلة</option>
+            <option value="41 - سوق أهراس">41 - سوق أهراس</option>
+            <option value="42 - تيبازة">42 - تيبازة</option>
+            <option value="43 - ميلة">43 - ميلة</option>
+            <option value="44 - عين الدفلى">44 - عين الدفلى</option>
+            <option value="45 - النعامة">45 - النعامة</option>
+            <option value="46 - عين تموشنت">46 - عين تموشنت</option>
+            <option value="47 - غرداية">47 - غرداية</option>
+            <option value="48 - غليزان">48 - غليزان</option>
+            <option value="49 - تيميمون">49 - تيميمون</option>
+            <option value="50 - برج باجي مختار">50 - برج باجي مختار</option>
+            <option value="51 - أولاد جلال">51 - أولاد جلال</option>
+            <option value="52 - بني عباس">52 - بني عباس</option>
+            <option value="53 - عين صالح">53 - عين صالح</option>
+            <option value="54 - عين قزام">54 - عين قزام</option>
+            <option value="55 - تقرت">55 - تقرت</option>
+            <option value="56 - جانت">56 - جانت</option>
+            <option value="57 - المغير">57 - المغير</option>
+            <option value="58 - المنيعة">58 - المنيعة</option>
+          </select>
         </div>
         <div class="field full">
-          <label>هل يشارك الطفل مع مركز أو مدرب؟ <span class="req">*</span></label>
+          <label>هل يشارك الطفل مع مركز أو مدرب مختلف؟ <span class="req">*</span></label>
           <div class="choice-row">
             <label class="choice"><input type="radio" name="hasCenter" value="نعم" onchange="toggleCenter(true)"> نعم</label>
             <label class="choice"><input type="radio" name="hasCenter" value="لا" checked onchange="toggleCenter(false)"> لا</label>
@@ -255,7 +331,6 @@
       </div>
     </div>
 
-    <!-- 3. اختر مسابقاتك -->
     <div class="step">
       <div class="step-head">
         <div class="step-num">3</div>
@@ -279,12 +354,10 @@
       <p style="font-size:0.8rem;color:var(--muted);">مسابقة اللغات عبارة عن اختبار واحد شامل للغات الثلاث، وليست ثلاث مسابقات منفصلة.</p>
     </div>
 
-    <!-- 4. الباقات -->
     <div class="step">
       <div class="step-head">
         <div class="step-num">4</div>
         <h2>هل ترغب في الاستفادة من إحدى الباقات؟</h2>
-        <span class="hint" style="margin-inline-start:auto;"></span>
       </div>
       <p style="font-size:0.8rem;color:var(--muted);margin-bottom:12px;">تظهر الباقات المتاحة تلقائياً حسب المسابقات التي اخترتها أعلاه.</p>
 
@@ -354,7 +427,6 @@
       </div>
     </div>
 
-    <!-- 5. الدفع -->
     <div class="step">
       <div class="step-head">
         <div class="step-num">5</div>
@@ -372,12 +444,10 @@
       </div>
     </div>
 
-    <!-- 6. ملاحظات -->
     <div class="step">
       <div class="step-head">
         <div class="step-num">6</div>
         <h2>ملاحظات أو استفسار</h2>
-        <span class="hint"></span>
       </div>
       <div class="field full">
         <label>هل لديك ملاحظة أو استفسار ضروري؟ <span class="opt">(اختياري)</span></label>
@@ -385,7 +455,6 @@
       </div>
     </div>
 
-    <!-- تأكيد -->
     <div class="step">
       <label class="consent-row">
         <input type="checkbox" id="consent" required>
@@ -402,11 +471,28 @@
 
   </form>
 
+  <div class="zed-banner">
+    <div class="zed-title"><i class="fa-solid fa-circle-info"></i><span>معلومات خاصة بمنصة Zed Soroban وتحميل نماذج المسابقات</span></div>
+    <a href="https://zed-app.github.io/zedsoroban/" target="_blank" class="zed-link"><span>زيارة المنصة</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+  </div>
+
+  <div class="contact-block">
+    <h3><i class="fa-solid fa-trophy" style="color:var(--gold);"></i> للتواصل مع لجنة تنظيم المسابقة</h3>
+    <div class="contact-links">
+      <a class="link-messenger" href="https://www.facebook.com/coash.nibal" target="_blank"><i class="fa-brands fa-facebook-messenger"></i> ماسنجر اللجنة</a>
+      <a class="link-whatsapp" href="https://wa.me/213674405422" target="_blank"><i class="fa-brands fa-whatsapp"></i> واتساب: 0674 40 54 22</a>
+    </div>
+  </div>
+
+  <div class="footer-credit">
+    <span>من إعداد المدرب لمو محمد</span>
+    <a href="https://m.me/mohamed.lemmou.7" target="_blank"><i class="fa-brands fa-facebook-messenger"></i> للتواصل معي عبر ماسنجر</a>
+  </div>
+
   <p class="footer-note">لجنة تنظيم كأس ملبو للذكاء الشامل &copy; 2026</p>
 </div>
 
 <script>
-  // ================== ضع هنا رابط Web App بعد نشر Code.gs ==================
   const SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzuJdntv-4mfaH7UtGychpxDpQT-CwZJUjHVR-68PDKLlidC1yCzyZOsaan8Cx63OtT/exec";
 
   const COMPETITIONS = {
@@ -418,16 +504,6 @@
     robotics:{label:"الروبوتيك",price:2500},
     languages:{label:"مسابقة اللغات",price:2500}
   };
-
-  // تعبئة قائمة الأعمار (4 إلى 18 سنة)
-  (function fillAges(){
-    const sel = document.getElementById('age');
-    for(let a=4;a<=18;a++){
-      const opt = document.createElement('option');
-      opt.value = a; opt.textContent = a + ' سنة';
-      sel.appendChild(opt);
-    }
-  })();
 
   function toggleCenter(show){
     document.getElementById('centerField').style.display = show ? 'flex' : 'none';
@@ -473,16 +549,24 @@
     return month>=1 && month<=12 && day>=1 && day<=31 && year>=1990 && year<=2025;
   }
 
+  function computeAge(birthStr){
+    const m = birthStr.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if(!m) return "";
+    const birth = new Date(+m[3], +m[2]-1, +m[1]);
+    const compDate = new Date(2026,9,2);
+    let age = compDate.getFullYear() - birth.getFullYear();
+    const md = compDate.getMonth() - birth.getMonth();
+    if(md < 0 || (md === 0 && compDate.getDate() < birth.getDate())) age--;
+    return age;
+  }
+
   function getSelectedKeys(){
     return Array.from(document.querySelectorAll('.comp-cb'))
       .filter(cb=>cb.checked).map(cb=>cb.dataset.key).sort();
   }
 
   document.querySelectorAll('.comp-cb').forEach(cb=>{
-    cb.addEventListener('change', ()=>{
-      cb.closest('.comp-row').style.color = cb.checked ? 'var(--navy)' : '';
-      updatePackages();
-    });
+    cb.addEventListener('change', updatePackages);
   });
   document.querySelectorAll('input[name="pkg"]').forEach(r=>r.addEventListener('change', updateTotal));
 
@@ -569,13 +653,13 @@
     const payload = {
       compTitle: "كأس ملبو للذكاء الشامل",
       compDate: "02-03/10/2026",
-      fullName: document.getElementById('fullName').value.trim(),
+      lastName: document.getElementById('lastName').value.trim(),
+      firstName: document.getElementById('firstName').value.trim(),
       birth: birthInput.value.trim(),
-      age: document.getElementById('age').value,
-      gender: document.querySelector('input[name="gender"]:checked').value,
+      age: computeAge(birthInput.value.trim()),
       parentName: document.getElementById('parentName').value.trim(),
       phone: document.getElementById('phone').value.trim(),
-      city: document.getElementById('city').value.trim(),
+      wilaya: document.getElementById('wilaya').value,
       hasCenter: hasCenter,
       center: hasCenter==='نعم' ? document.getElementById('center').value.trim() : '',
       coach: hasCenter==='نعم' ? document.getElementById('coach').value.trim() : '',
@@ -594,7 +678,7 @@
     }).then(()=>{
       btn.disabled=false;
       btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> إرسال طلب التسجيل';
-      succBox.innerHTML = '✅ تم استلام طلب تسجيل <strong>'+payload.fullName+'</strong> بنجاح، وسيتم التواصل معكم لتأكيد الدفع.';
+      succBox.innerHTML = '✅ تم استلام طلب تسجيل <strong>'+payload.lastName+' '+payload.firstName+'</strong> بنجاح، وسيتم التواصل معكم لتأكيد الدفع.';
       succBox.style.display='block';
       document.getElementById('regForm').reset();
       toggleCenter(false);
