@@ -222,7 +222,64 @@
     padding-top:16px;border-top:1px dashed var(--border);
   }
   .footer-credit a{color:var(--navy);text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:6px;margin-top:6px;}
-
+  /* ===== بطاقة معلومات الدفع CCP & BaridiMob ===== */
+ 
+  .ccp-card{
+    background:linear-gradient(135deg,#f7f9fd 0%,#eef2ff 100%);
+    border:1.5px solid #c7d2fe;
+    border-radius:14px;
+    padding:0;
+    margin-bottom:22px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(79,70,229,0.08);
+  }
+  .ccp-head{
+    background:linear-gradient(135deg,#0f1e3d 0%,#173463 100%);
+    color:#fff;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .ccp-head i{color:var(--gold-light);font-size:1.1rem;}
+  .ccp-head h3{font-family:'El Messiri',serif;font-size:1rem;font-weight:700;color:#e7c877;}
+  .ccp-body{padding:16px 20px;}
+  .ccp-subtitle{
+    display:flex;align-items:center;gap:8px;
+    font-family:'El Messiri',serif;font-size:0.95rem;font-weight:700;
+    color:#4f46e5;padding:6px 0 10px;border-bottom:2px solid #c7d2fe;margin-bottom:8px;
+  }
+  .ccp-subtitle i{font-size:0.9rem;}
+  .ccp-row{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:10px;padding:9px 0;border-bottom:1px dashed #c7d2fe;
+    flex-wrap:wrap;font-size:0.9rem;
+  }
+  .ccp-row:last-of-type{border-bottom:none;}
+  .ccp-label{
+    color:#4a5568;font-weight:600;display:flex;align-items:center;
+    gap:7px;min-width:150px;
+  }
+  .ccp-label i{color:#4f46e5;font-size:0.85rem;}
+  .ccp-value{
+    font-weight:800;color:var(--navy);font-family:'Cairo',sans-serif;
+    letter-spacing:0.5px;direction:ltr;flex:1;text-align:left;font-size:1rem;
+  }
+  .btn-copy{
+    background:#4f46e5;color:#fff;border:none;padding:6px 11px;
+    border-radius:7px;cursor:pointer;font-size:0.78rem;
+    display:inline-flex;align-items:center;gap:5px;
+    transition:background 0.2s;font-family:'Cairo',sans-serif;flex:none;
+  }
+  .btn-copy:hover{background:#4338ca;}
+  .btn-copy.copied{background:#136c4a;}
+  .ccp-note{
+    margin-top:12px;background:#fffaf0;border:1px solid var(--gold-light);
+    border-radius:9px;padding:11px 14px;font-size:0.84rem;color:#7a5a10;
+    display:flex;gap:9px;align-items:flex-start;
+  }
+  .ccp-note i{margin-top:3px;color:var(--gold);}
+  
   .footer-note{text-align:center;color:var(--muted);font-size:0.82rem;margin-top:26px;}
 </style>
 </head>
@@ -279,6 +336,65 @@
     <span>يرجى قراءة تفاصيل البطولة والباقات والأسعار في الإعلان الرسمي قبل ملء الاستمارة. سيتم التواصل معكم بعد دراسة الطلب لتأكيد التسجيل وبيانات الدفع.</span>
   </div>
 
+    <!-- ===== معلومات الدفع CCP & BaridiMob ===== -->
+  <div class="ccp-card">
+    <div class="ccp-head">
+      <i class="fa-solid fa-building-columns"></i>
+      <h3>معلومات الدفع (CCP &amp; BaridiMob)</h3>
+    </div>
+    <div class="ccp-body">
+
+      <!-- CCP -->
+      <div class="ccp-subtitle">
+        <i class="fa-solid fa-envelope"></i>
+        <span>الحساب البريدي CCP</span>
+      </div>
+      <div class="ccp-row">
+        <span class="ccp-label"><i class="fa-solid fa-hashtag"></i> رقم CCP:</span>
+        <span class="ccp-value" dir="ltr">0028735773</span>
+        <button type="button" class="btn-copy" onclick="copyCCP('0028735773', this)" title="نسخ الرقم">
+          <i class="fa-solid fa-copy"></i>
+        </button>
+      </div>
+      <div class="ccp-row">
+        <span class="ccp-label"><i class="fa-solid fa-key"></i> المفتاح (Clé):</span>
+        <span class="ccp-value" dir="ltr">85</span>
+        <button type="button" class="btn-copy" onclick="copyCCP('85', this)" title="نسخ المفتاح">
+          <i class="fa-solid fa-copy"></i>
+        </button>
+      </div>
+
+      <!-- BaridiMob -->
+      <div class="ccp-subtitle" style="margin-top:16px;">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <span>تطبيق BaridiMob</span>
+      </div>
+      <div class="ccp-row">
+        <span class="ccp-label"><i class="fa-solid fa-hashtag"></i> رقم الحساب (RIP):</span>
+        <span class="ccp-value" dir="ltr" style="font-size:0.9rem;">00799999002873577385</span>
+        <button type="button" class="btn-copy" onclick="copyCCP('00799999002873577385', this)" title="نسخ الرقم">
+          <i class="fa-solid fa-copy"></i>
+        </button>
+      </div>
+
+      <!-- صاحب الحساب -->
+      <div class="ccp-row" style="border-top:1px dashed #c7d2fe;margin-top:10px;padding-top:12px;">
+        <span class="ccp-label"><i class="fa-solid fa-user"></i> صاحب الحساب:</span>
+        <span class="ccp-value" style="direction:rtl;text-align:right;">Mekhnach Nabila</span>
+      </div>
+      <div class="ccp-row">
+        <span class="ccp-label"><i class="fa-solid fa-location-dot"></i> المركز:</span>
+        <span class="ccp-value" style="direction:rtl;text-align:right;">Melbou Centre</span>
+      </div>
+
+      <div class="ccp-note">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>بعد إتمام التحويل، يرجى الاحتفاظ بوصل العملية (Screenshot أو صورة الوصل) وإرساله للجنة عبر واتساب أو ماسنجر لتأكيد التسجيل.</span>
+      </div>
+
+    </div>
+  </div>
+  
   <form id="regForm" onsubmit="submitData(event)">
 
     <div class="step">
@@ -519,6 +635,14 @@
         <h2>طريقة الدفع</h2>
       </div>
       <div class="choice-row">
+              <div class="notice" style="margin-bottom:14px;font-size:0.82rem;">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>
+          إذا اخترت <strong>تحويل بريدي CCP</strong> استعمل: <strong>CCP: 0028735773 — Clé: 85</strong><br>
+          إذا اخترت <strong>BaridiMob</strong> استعمل: <strong>00799999002873577385</strong><br>
+          صاحب الحساب: <strong>Mekhnach Nabila</strong> — Melbou Centre
+        </span>
+      </div>
         <label class="choice"><input type="radio" name="payment" value="نقدًا" checked onchange="togglePaymentOther(false)"> نقدًا</label>
         <label class="choice"><input type="radio" name="payment" value="تحويل بريدي CCP" onchange="togglePaymentOther(false)"> تحويل بريدي CCP</label>
         <label class="choice"><input type="radio" name="payment" value="BaridiMob" onchange="togglePaymentOther(false)"> BaridiMob</label>
@@ -603,6 +727,47 @@
   let currentEditingRow = -1;
   let originalBirthDate = "";
   let lastSearchedKey = "";
+ 
+  /* ============================================================
+     نسخ معلومات CCP إلى الحافظة
+     ============================================================ */
+  function copyCCP(text, btn){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){
+        showCopyFeedback(btn);
+      }).catch(function(){
+        fallbackCopy(text, btn);
+      });
+    } else {
+      fallbackCopy(text, btn);
+    }
+  }
+
+  function fallbackCopy(text, btn){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showCopyFeedback(btn);
+    } catch(e){
+      alert('تعذّر النسخ. الرجاء النسخ يدوياً: ' + text);
+    }
+    document.body.removeChild(ta);
+  }
+
+  function showCopyFeedback(btn){
+    const original = btn.innerHTML;
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> تم النسخ';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.innerHTML = original;
+    }, 2000);
+  }
 
   /* ============================================================
      دوال الإظهار/الإخفاء
