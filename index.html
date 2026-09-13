@@ -49,6 +49,32 @@
     background:rgba(255,255,255,0.05);
   }
   .logo-slot i{font-size:1.4rem;color:var(--gold-light);}
+    /* ===== شعار البطولة ===== */
+  .logo-img-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0 auto 18px;
+  }
+  .hero-logo{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--gold-light);
+    background:#fff;
+    box-shadow:0 8px 25px rgba(0,0,0,0.25), 0 0 0 6px rgba(231,200,119,0.15);
+    transition:transform 0.3s ease;
+  }
+  .hero-logo:hover{
+    transform:scale(1.05);
+  }
+  @media (max-width:640px){
+    .hero-logo{
+      width:110px;
+      height:110px;
+    }
+  }
   .hero h1{font-size:1.7rem;font-weight:700;margin-bottom:6px;}
   .hero .gold-rule{width:64px;height:3px;background:var(--gold);margin:12px auto 14px;border-radius:2px;}
   .hero p.sub{color:#cfd8ec;font-size:0.95rem;max-width:520px;margin:0 auto 18px;}
@@ -286,10 +312,9 @@
 <body>
   
 <header class="hero">
-  <div class="logo-slot">
-    <i class="fa-solid fa-trophy"></i>
-    <span>مكان شعار<br>البطولة</span>
-  </div>
+  <div class="logo-img-wrap">
+    <img src="logo.jpg" alt="شعار كأس ملبو للذكاء الشامل" class="hero-logo" onerror="this.src='https://i.postimg.cc/kXvXWSWN/801044229-1076103435263225-4220760670918017710-n.jpg'">
+    </div>
   <h1>كأس ملبو للذكاء الشامل</h1>
   <div class="gold-rule"></div>
   <p class="sub">بطولة تجمع بين الحساب، الرياضيات، الذكاء، الذاكرة، الروبوتيك واللغات — للأطفال والشباب إلى غاية 18 سنة</p>
